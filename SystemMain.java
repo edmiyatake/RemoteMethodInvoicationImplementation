@@ -82,6 +82,18 @@ class SystemMain {
 					EventBus.EV_REGISTER_STUDENT,
 					EventBus.EV_SHOW);
 
+			// new component
+			LogComponent objCommandEventHandler7 = new LogComponent(
+					db,
+					EventBus.EV_LOG,
+					EventBus.EV_SHOW);
+
+			CourseConflictChecker objCommandEventHander8 = new CourseConflictChecker(
+					db,
+					EventBus.EV_CONFLICT_CHECK,
+					EventBus.EV_SHOW);
+
+
 			ClientInput objClientInput = new ClientInput();
 			ClientOutput objClientOutput = new ClientOutput();
 

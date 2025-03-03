@@ -49,6 +49,7 @@ public class ClientInput extends Thread {
                 if (sChoice.equals("1")) {
                     // Announce the command event #1.
                     EventBus.announce(EventBus.EV_SHOW, "\n");
+                    EventBus.announce(EventBus.EV_LOG, "You chose option: 1");
                     EventBus.announce(EventBus.EV_LIST_ALL_STUDENTS, null);
                     continue;
                 }
@@ -57,6 +58,7 @@ public class ClientInput extends Thread {
                 if (sChoice.equals("2")) {
                     // Announce the command event #2.
                     EventBus.announce(EventBus.EV_SHOW, "\n");
+                    EventBus.announce(EventBus.EV_LOG, "You chose option: 2");
                     EventBus.announce(EventBus.EV_LIST_ALL_COURSES, null);
                     continue;
                 }
@@ -68,6 +70,8 @@ public class ClientInput extends Thread {
                     String sCID = objReader.readLine().trim();
                     EventBus.announce(EventBus.EV_SHOW, "\nEnter course section and press return >> ");
                     String sSection = objReader.readLine().trim();
+                    EventBus.announce(EventBus.EV_LOG, "You chose option: 3");
+                    EventBus.announce(EventBus.EV_LOG, "Course ID: " + sCID + "  Course Section: " + sSection);
 
                     // Announce the command event #3 with course ID and course section.
                     EventBus.announce(EventBus.EV_SHOW, "\n");
@@ -80,6 +84,8 @@ public class ClientInput extends Thread {
                     // Get student ID from user.
                     EventBus.announce(EventBus.EV_SHOW, "\nEnter student ID and press return >> ");
                     String sSID = objReader.readLine().trim();
+                    EventBus.announce(EventBus.EV_LOG, "You chose option: 4");
+                    EventBus.announce(EventBus.EV_LOG, "Student ID: " + sSID);
 
                     // Announce the command event #4 with student ID.
                     EventBus.announce(EventBus.EV_SHOW, "\n");
@@ -96,6 +102,8 @@ public class ClientInput extends Thread {
                     // Announce the command event #5 with student ID.
                     EventBus.announce(EventBus.EV_SHOW, "\n");
                     EventBus.announce(EventBus.EV_LIST_COURSES_COMPLETED, sSID);
+                    EventBus.announce(EventBus.EV_LOG, "You chose option: 5 ");
+                    EventBus.announce(EventBus.EV_LOG, "Student ID: " + sSID);
                     continue;
                 }
 
@@ -112,11 +120,14 @@ public class ClientInput extends Thread {
                     // Announce the command event #5 with student ID, course ID, and course section.
                     EventBus.announce(EventBus.EV_SHOW, "\n");
                     EventBus.announce(EventBus.EV_REGISTER_STUDENT, sSID + " " + sCID + " " + sSection);
+                    EventBus.announce(EventBus.EV_LOG, "You chose option: 6 ");
+                    EventBus.announce(EventBus.EV_LOG, "Student ID: " + sSID + " Course ID: " + sCID + " Section Number: " + sSection);
                     continue;
                 }
 
                 // Terminate this client.
                 if (sChoice.equalsIgnoreCase("X")) {
+                    EventBus.announce(EventBus.EV_LOG, "Exiting...");
                     break;
                 }
             }

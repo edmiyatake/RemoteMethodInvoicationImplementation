@@ -48,16 +48,23 @@ public class RegisterStudentHandler extends CommandEventHandler {
             return "Invalid course ID or course section";
         }
 
+        // Maybe I would put the class checker here
+
         // Check if the given course conflicts with any of the courses the student has registered.
-        ArrayList vCourse = objStudent.getRegisteredCourses();
-        for (int i=0; i<vCourse.size(); i++) {
-            if (((Course) vCourse.get(i)).conflicts(objCourse)) {
-                return "Registration conflicts";
-            }
-        }
+//        ArrayList vCourse = objStudent.getRegisteredCourses();
+//        for (int i=0; i<vCourse.size(); i++) {
+//            if (((Course) vCourse.get(i)).conflicts(objCourse)) {
+//                return "Registration conflicts";
+//            }
+//        }
+
+        EventBus.announce(EventBus.EV_CONFLICT_CHECK, sSID + " " + sCID + " " + sSection);
 
         // Request validated. Proceed to register.
         this.objDataBase.makeARegistration(sSID, sCID, sSection);
+        if (this.objDataBase.numStudents(sCID, sSection) > 3){
+            return "Overbooked!";
+        }
         return "Successful!";
     }
 }

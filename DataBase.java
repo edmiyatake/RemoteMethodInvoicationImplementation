@@ -184,4 +184,11 @@ public class DataBase {
             objCourse.registerStudent(objStudent);
         }
     }
+
+    // Return the number of students
+    public int numStudents(String sCID, String sSection) {
+        Course objCourse = this.getCourseRecord(sCID, sSection);
+
+        return objCourse.getRegisteredStudents().size();
+    }
 }

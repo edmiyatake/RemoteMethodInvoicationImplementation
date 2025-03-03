@@ -39,6 +39,7 @@ public class ListAllCoursesHandler extends CommandEventHandler {
         for (int i=0; i<vCourse.size(); i++) {
             sReturn += (i == 0 ? "" : "\n") + ((Course) vCourse.get(i)).toString();
         }
+        EventBus.announce(EventBus.EV_LOG, "\n" + sReturn + "\n");
         return sReturn;
     }
 }

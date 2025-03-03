@@ -63,6 +63,11 @@ public class Course {
     protected ArrayList vRegistered;
 
     /**
+     *  New variable containing the amount of students in each cource
+     */
+    protected int numStudents = 0;
+
+    /**
      * Constructs a course record by parsing the given string. The string <code>sInput</code> is
      * field-oriented and space-separated. The seven required fields are course ID, section, class
      * days, start time, stop time, instructor, and class name. Here is an example:
@@ -174,6 +179,7 @@ public class Course {
      */
     public void registerStudent(Student objStudent) {
         this.vRegistered.add(objStudent);
+
     }
 
     /**

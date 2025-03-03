@@ -38,6 +38,7 @@ public class ListAllStudentsHandler extends CommandEventHandler {
         for (int i=0; i<vStudent.size(); i++) {
             sReturn += (i == 0 ? "" : "\n") + ((Student) vStudent.get(i)).toString();
         }
+        EventBus.announce(EventBus.EV_LOG, "\n" + sReturn + "\n");
         return sReturn;
     }
 }

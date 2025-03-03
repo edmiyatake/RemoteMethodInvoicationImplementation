@@ -71,6 +71,16 @@ public class EventBus {
     public static final int EV_REGISTER_STUDENT = 6;
 
     /**
+     * Command event #7 definition: log every action that the user requests
+     */
+    public static final int EV_LOG = 7;
+
+    /**
+     * Command event #8 definition: course conflict check
+     */
+    public static final int EV_CONFLICT_CHECK= 8;
+
+    /**
      * The number of defined events.
      */
     public static final int MAX_NUM_EVENTS  = 100;
