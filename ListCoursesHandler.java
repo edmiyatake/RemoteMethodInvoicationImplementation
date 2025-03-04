@@ -2,10 +2,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public class ListStudentsHandler extends UnicastRemoteObject implements IActivity {
+public class ListCoursesHandler extends UnicastRemoteObject implements IActivity {
     private final DBInterface db;
 
-    protected ListStudentsHandler(DBInterface db) throws RemoteException {
+    protected ListCoursesHandler(DBInterface db) throws RemoteException {
         super();
         this.db = db;
     }
@@ -13,8 +13,8 @@ public class ListStudentsHandler extends UnicastRemoteObject implements IActivit
     @Override
     public Object execute() {
         try {
-//          List<Student> students = db.getAllStudentRecords(); return students;
-            return db.getAllStudentRecords();
+            // courses = db.getAllCourseRecords(); return courses;
+            return db.getAllCourseRecords();
         }
         catch (RemoteException e1) {
             System.err.println("RemoteException occurred: " + e1.getMessage());

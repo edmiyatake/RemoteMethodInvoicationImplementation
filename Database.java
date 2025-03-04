@@ -29,14 +29,91 @@ public class Database extends UnicastRemoteObject implements DBInterface {
         objCourseFile.close();
     }
 
+
     @Override
     public List<Student> getAllStudentRecords() {
+        // ListStudentsHandler.java
         return vStudent;
     }
 
     @Override
-    public boolean makeARegistration(String sSID, String sCID, String sSection) {
-        return true;
+    public List<Course> getAllCourseRecords() {
+        // ListCoursesHandler.java
+        return vCourse;
+    }
+
+    @Override
+    public Student getStudentRecord(String sSID) {
+        for (int i=0; i<this.vStudent.size(); i++) {
+            Student objStudent = (Student) this.vStudent.get(i);
+            if (objStudent.match(sSID)) {
+                return objStudent;
+            }
+        }
+
+        // Return null if not found.
+        return null;
+    }
+
+    @Override
+    public String getStudentName(String sSID) {
+        // Lookup and return the matching student name if found.
+        for (int i=0; i<this.vStudent.size(); i++) {
+            Student objStudent = (Student) this.vStudent.get(i);
+            if (objStudent.match(sSID)) {
+                return objStudent.getName();
+            }
+        }
+
+        // Return null if not found.
+        return null;
+    }
+
+    @Override
+    public Course getCourseRecord(String sCID, String sSection) {
+        // Lookup and return the matching course record if found.
+        for (int i=0; i<this.vCourse.size(); i++) {
+            Course objCourse = (Course) this.vCourse.get(i);
+            if (objCourse.match(sCID, sSection)) {
+                return objCourse;
+            }
+        }
+
+        // Return null if not found.
+        return null;
+    }
+
+    @Override
+    public String getCourseName(String sCID) {
+        // Lookup and return the matching course name if found.
+        for (int i=0; i<this.vCourse.size(); i++) {
+            Course objCourse = (Course) this.vCourse.get(i);
+            if (objCourse.match(sCID)) {
+                return objCourse.getName();
+            }
+        }
+
+        // Return null if not found.
+        return null;
+    }
+
+    @Override
+    public int numStudents(String sCID, String sSection) {
+        Course objCourse = this.getCourseRecord(sCID, sSection);
+        return objCourse.getRegisteredStudents().size();
+    }
+
+    @Override
+    public void makeARegistration(String sSID, String sCID, String sSection) {
+        // Find the student record and the course record.
+        Student objStudent = this.getStudentRecord(sSID);
+        Course  objCourse  = this.getCourseRecord(sCID, sSection);
+
+        // Make a registration.
+        if (objStudent != null && objCourse != null) {
+            objStudent.registerCourse(objCourse);
+            objCourse.registerStudent(objStudent);
+        }
     }
 
     public static void main(String[] args) {
